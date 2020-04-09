@@ -1,7 +1,11 @@
 package it.polito.tdp.anagrammi;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import it.polito.tdp.anagrammi.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class FXMLController {
+	private Model model = new Model(); 
 
     @FXML
     private ResourceBundle resources;
@@ -33,7 +38,22 @@ public class FXMLController {
 
     @FXML
     void handleCalculate(ActionEvent event) {
-
+    	Correttitxt.clear();
+    	Erratitxt.clear();
+    	
+    	String parola = Parolatxt.getText();
+    	
+    	List<String> solu = model.Anagrammi(parola);
+    	
+    	if(solu.isEmpty()) {
+    		Correttitxt.appendText("sbagliato");
+    	}
+    	
+    	for(String s : solu) {
+    		Correttitxt.appendText(s+"\n");
+    	}
+    	
+    	
     }
 
     @FXML
