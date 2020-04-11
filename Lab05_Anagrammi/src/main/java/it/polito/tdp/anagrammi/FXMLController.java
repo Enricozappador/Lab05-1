@@ -13,7 +13,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class FXMLController {
+	
 	private Model model = new Model(); 
+	
 
     @FXML
     private ResourceBundle resources;
@@ -38,20 +40,43 @@ public class FXMLController {
 
     @FXML
     void handleCalculate(ActionEvent event) {
+    	
+    	boolean flag = false; 
     	Correttitxt.clear();
     	Erratitxt.clear();
+    	List<String>dizionario = model.Creadizionario(); 
     	
     	String parola = Parolatxt.getText();
     	
     	List<String> solu = model.Anagrammi(parola);
+    
     	
-    	if(solu.isEmpty()) {
+    /*	if(solu.isEmpty()) {
     		Correttitxt.appendText("sbagliato");
     	}
     	
     	for(String s : solu) {
     		Correttitxt.appendText(s+"\n");
-    	}
+    	}*/
+    	
+    	for(String s: solu) {
+    		flag = false; 
+    		for(String d : dizionario) {
+    			if(s.equals(d)) {
+    				Correttitxt.appendText(s+ "\n");
+  				flag = true; 
+    				
+    			}
+    			}
+  		if(flag == false){
+    			Erratitxt.appendText(s+"\n");
+    	
+ 		}
+    		
+    		}
+    		
+    		
+    		
     	
     	
     }

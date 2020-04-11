@@ -3,7 +3,11 @@ package it.polito.tdp.anagrammi.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polito.tdp.anagrammi.db.DizionarioDAO;
+
 public class Model {
+	
+	private DizionarioDAO dao = new DizionarioDAO(); 
 	
 	private List<String> soluzione; 
 	
@@ -45,6 +49,10 @@ public class Model {
 		
 		
 		
+	}
+	
+	public List<String> Creadizionario(){
+		return dao.Creadizionario(); 
 	}
 
 }
